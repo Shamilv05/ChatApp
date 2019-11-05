@@ -1,2 +1,3 @@
 # ChatApp
-Soon
+ReactJs - FrontEnd
+Golang - BackEnd
