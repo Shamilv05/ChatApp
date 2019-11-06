@@ -1,6 +1,6 @@
 let socket = new WebSocket("ws://127.0.0.1:8080/connection");
 
-let connect = () => {
+let connect = (cb) => {
     console.log("Attempt...");
 
     socket.onopen = () => {
@@ -9,11 +9,12 @@ let connect = () => {
 
     socket.onmessage = (msg) => {
         console.log(msg);
+        cb(msg);
     };
 
     socket.onclose = (e) => {
         console.log("Socket Closed: ", e);
-    }
+    };
 
     socket.onerror = (err) => {
         console.log("Socket Error: ", err);

@@ -7,7 +7,19 @@ import History from "./components/History/index";
 class App extends Component {
     constructor(props) {
         super(props);
-        connect();
+        this.state = {
+            history: []
+        }
+    }
+
+    componentDidMount() {
+        connect((msg) => {
+            console.log("New Message")
+            this.setState(prevState => ({
+                history: [...prevState.history, msg]
+            }));
+            console.log(this.state);
+        });
     }
 
     sendMessage() {
@@ -18,8 +30,8 @@ class App extends Component {
         return (
             <div className="App">
                 <Header />
-                <History />
-                {/*<button onClick={this.sendMessage}>Send</button>*/}
+                <History history={this.state.history}/>
+                <button onClick={this.sendMessage}>Send</button>
             </div>
         )
     }
